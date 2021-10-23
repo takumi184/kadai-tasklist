@@ -2,10 +2,11 @@ class TasksController < ApplicationController
     before_action :set_task, only: [:show, :edit, :update, :destroy]
     
     def index
-        @tasks = Task.all
+        @pagy, @tasks = pagy(Task.order(id: :desc), items: 25)
     end
     
     def show
+        @task = User.find(params[:id])
     end
     
     def new
@@ -45,6 +46,11 @@ class TasksController < ApplicationController
     end
     
     private
+    
+
+    def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
 
     def set_task
     @task = Task.find(params[:id])

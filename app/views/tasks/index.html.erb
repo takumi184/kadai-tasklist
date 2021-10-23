@@ -1,14 +1,14 @@
-<header class="mb-4">
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <div class="container-fluid ps-5 pe-5">
-      <a class="navbar-brand" href="/">Tasklist</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-        <span class="navbar-toggler-icon"></span>
+<header>
+  <nav>
+    <div>
+      <a href="/">Tasklist</a>
+      <button type="button">
+        <span></span>
       </button>
 
-      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <div>
         <ul class="navbar-nav">
-          <li class="nav-item"><a href="#" class="nav-link">Signup</a></li>
+          <li class="nav-item"><%= link_to 'Signup', signup_path, class: 'nav-link' %></li>
           <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
         </ul>
       </div>
@@ -24,3 +24,11 @@
 </ul>
 
 <%= link_to '新規タスクの投稿', new_task_path %>
+<%= render 'tasks', users: @tasks %>
+
+<div class="bg-secondary p-3 p-sm-5 my-4 rounded">
+  <div class="text-center text-white">
+    <h1>Welcome to the Microposts</h1>
+    <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+  </div>
+</div>
