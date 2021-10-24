@@ -1,5 +1,7 @@
 class TasksController < ApplicationController
     before_action :require_user_logged_in, only: [:index, :show]
+    before_action :require_user_logged_in
+    before_action :correct_user, only: [:destroy]
     
     def index
     if logged_in?
@@ -10,7 +12,7 @@ class TasksController < ApplicationController
     end
     
     def show
-        @task = User.find(params[:id])
+        @task = Task.find(params[:id])
         @pagy, @tasks = pagy(@task.tasks.order(id: :desc))
         counts(@task)
     end
