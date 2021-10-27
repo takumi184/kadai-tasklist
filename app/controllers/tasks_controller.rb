@@ -5,8 +5,7 @@ class TasksController < ApplicationController
     
     def index
     if logged_in?
-      @pagy, @tasks = pagy(Task.order(id: :desc), items: 25)
-      @task = current_user.tasks.build  # form_with 用
+      @tasks = Task.all
       @pagy, @tasks = pagy(current_user.tasks.order(id: :desc))
     end
     end
@@ -22,7 +21,7 @@ class TasksController < ApplicationController
     end
     
     def create
-        @task = current_user.tasks.build(micropost_params)
+        @task = current_user.tasks.build(task_params)
         if @task.save
          flash[:success] = 'メッセージを投稿しました。'
          redirect_to root_url
