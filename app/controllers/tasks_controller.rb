@@ -1,18 +1,12 @@
 class TasksController < ApplicationController
     before_action :require_user_logged_in, only: [:index, :show]
     before_action :require_user_logged_in
-    before_action :correct_user, only: [:destroy]
+    before_action :correct_user, only: [:destroy, :create]
     before_action :set_message, only: [:show, :edit, :update, :destroy]
+
+
     def index
-    if logged_in?
       @tasks = Task.all
-      @pagy, @tasks = pagy(current_user.tasks.order(id: :desc))
-    end
-    end
-    def show
-        # @task = Task.find(params[:id])
-        # @pagy, @tasks = pagy(@task.tasks.order(id: :desc))
-        # counts(@task)
     end
     def new
         @task = Task.new
