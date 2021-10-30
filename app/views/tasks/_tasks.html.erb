@@ -1,6 +1,6 @@
 <% if tasks.any? %>
   <ul class="list-unstyled mt-2">
-    <% tasks.each do |task| %>
+    <% @tasks.each do |task| %>
       <li class="d-flex">
         <img class="rounded me-2 mb-5" src="<%= gravatar_url(task.user, { size: 64 }) %>" alt="">
         <div>

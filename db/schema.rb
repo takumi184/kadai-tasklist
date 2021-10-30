@@ -17,8 +17,6 @@ ActiveRecord::Schema.define(version: 2021_10_25_113242) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "status"
-    t.bigint "user_id", null: false
-    t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
@@ -29,5 +27,4 @@ ActiveRecord::Schema.define(version: 2021_10_25_113242) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "tasks", "users"
 end

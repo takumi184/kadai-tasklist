@@ -1,7 +1,29 @@
 <h1>タスク一覧</h1>
 <ul>
-  <% @tasks.each do |message| %>
-    <li><%= link_to message.id, message %> : <%= message.status %> &gt; <%= message.content %></li>
+  <% @tasks.each do |task| %>
+    <li><%= link_to task.id, task %> : <%= task.status %> &gt; <%= task.content %></li>
   <% end %>
 </ul>
 <%= link_to '新規タスクの投稿', new_task_path %>
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-sm-4">
+      <%= form_with(model: @task) do |f| %>
+        <div class="mb-3">
+          <%= f.text_area :content, class: 'form-control', rows: 5 %>
+        </div>
+        <%= f.submit 'Post', class: 'btn btn-primary w-100' %>
+      <% end %>
+    </aside>
+    <div class="col-sm-8">
+      <%= render 'tasks/tasks', tasks: @tasks %>
+    </div>
+  </div>
+<% else %>
+  <div class="bg-secondary p-3 p-sm-5 my-4 rounded">
+    <div class="text-center text-white">
+      <h1>Welcome to the Tasks</h1>
+      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+    </div>
+  </div>
+<% end %>
