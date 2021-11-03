@@ -16,7 +16,6 @@ class TasksController < ApplicationController
          flash[:success] = 'タスクを投稿しました。'
          redirect_to root_url
         else
-         @pagy, @tasks = pagy(current_user.tasks.order(id: :desc))
          flash.now[:danger] = 'タスクの投稿に失敗しました。'
          render 'new'
         end
@@ -57,9 +56,6 @@ class TasksController < ApplicationController
      params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
     
-    def set_task
-         @task = Task.find(params[:id])
-    end
 
     def correct_user
      @task = current_user.tasks.find_by(id: params[:id])
